@@ -1,0 +1,10 @@
+# .golangci.yml
+linters-settings:
+  govet:
+    check-shadowing: true
+  gofmt:
+    fast: true
+
+issues:
+  exclude:
+    - composites
