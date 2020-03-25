@@ -13,7 +13,7 @@ func TestMoney_MarshalJSON(t *testing.T) {
 		wantByte string
 		wantErr  bool
 	}{
-		{"name", MustForge(123, "EUR"), `{"amount":123,"currency":"EUR"}`, false},
+		{"name", MustForge(123, "EUR"), `{"amount":123,"currency":"EUR","symbol":"€","unit":2}`, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

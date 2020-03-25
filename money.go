@@ -24,6 +24,8 @@ type Money struct {
 type DTO struct {
 	Amount   int64  `json:"amount"`
 	Currency string `json:"currency"`
+	Symbol   string `json:"symbol"`
+	Unit     int    `json:"unit"`
 }
 
 func (d DTO) ExtractMoney() (m Money, err error) {
@@ -33,6 +35,8 @@ func (d DTO) ExtractMoney() (m Money, err error) {
 func (m Money) ExtractDTO() DTO {
 	return DTO{m.Amount.Int64(),
 		m.Currency.Code,
+		m.Currency.Symbol,
+		m.Currency.MinorUnit,
 	}
 }
 
@@ -154,7 +158,7 @@ func (m Money) Subtract(subtrahend Money) (s Money, err error) {
 
 func (m Money) SplitAmountAndCents() (i int64, cents int, err error) {
 	f := m.Float()
-	digitsCount := m.Currency.Digits
+	digitsCount := m.Currency.MinorUnit
 
 	i = int64(f)
 	if f-float64(i) <= 0 {
