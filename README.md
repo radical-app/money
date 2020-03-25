@@ -71,17 +71,18 @@ jpy312, err := money.Parse("312")
 
 will produce the simplified json for `money.DTO`:
     
-    {"amount":123,"currency":"EUR"}
+    {"amount":123,"currency":"EUR","symbol":"€","cents":100}
 
 and the
  
     m := &Money{}
-    json.Unmarshal([]byte('{"amount":123,"currency":"EUR"}'), m)
+    json.Unmarshal([]byte('{"amount":123,"currency":"EUR","symbol":"€","cents":100}'), m)
 
 will produce the `money.EUR(123)`  
 
 </p>
 </details>
+   
 
 ## .String()
  

@@ -21,25 +21,6 @@ type Money struct {
 	Currency Currency `json:"currency"`
 }
 
-type DTO struct {
-	Amount   int64  `json:"amount"`
-	Currency string `json:"currency"`
-	Symbol   string `json:"symbol"`
-	Unit     int    `json:"unit"`
-}
-
-func (d DTO) ExtractMoney() (m Money, err error) {
-	return Forge(d.Amount, d.Currency)
-}
-
-func (m Money) ExtractDTO() DTO {
-	return DTO{m.Amount.Int64(),
-		m.Currency.Code,
-		m.Currency.Symbol,
-		m.Currency.MinorUnit,
-	}
-}
-
 func (m Money) Int64() int64 {
 	return int64(m.Amount)
 }
