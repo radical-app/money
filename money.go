@@ -1,13 +1,12 @@
 package money
 
 import (
+	"errors"
 	"fmt"
 	"math"
 	"strconv"
 
 	"database/sql/driver"
-
-	"github.com/pkg/errors"
 )
 
 type Amount int64
