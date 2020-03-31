@@ -1,7 +1,7 @@
 PROJECT_NAME := "money"
 PKG := "github.com/radicalcompany/$(PROJECT_NAME)"
 ENVGO := $(shell go env GOPATH)
-.PHONY: all swag dep build clean test coverage coverhtml lint install-lint
+.PHONY: all swag dep dep-test dep-build build clean test coverage coverhtml lint install-lint
 
 all: build
 
@@ -13,6 +13,14 @@ lint: ## Lint the files
 
 test: ## Run unittests
 	@go test -v
+
+dep: dep-test dep-build
+
+dep-test:
+	@go get -t
+
+dep-build:
+	@go get
 
 build: dep ## Build the binary file
 	@go build -i -v $(PKG)

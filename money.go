@@ -12,7 +12,6 @@ import (
 type Amount int64
 
 func (a Amount) Int64() int64 {
-
 	return int64(a)
 }
 
@@ -168,7 +167,7 @@ func Scan(value interface{}, curr string) (m Money, err error) {
 		mm, err := Forge(v, curr)
 		return mm, err
 	}
-	return m, errors.New(fmt.Sprintf("impossible to get int64 the value from %v", value))
+	return m, fmt.Errorf("impossible to get int64 the value from %v", value)
 }
 
 func (m *Money) ScanInt64(value interface{}) error {
@@ -224,7 +223,7 @@ func (m *Money) Scan(value interface{}) error {
 		return nil
 	}
 
-	return errors.New(fmt.Sprintf("can't convert given %v", value))
+	return fmt.Errorf("can't convert given %v", value)
 }
 
 // Value implements the driver Valuer interface.
