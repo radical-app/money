@@ -12,18 +12,18 @@ import (
 func DisplayAmount(m money.Money, locale string) (formatted string, err error) {
 	tag := language.Make(locale)
 	p := message.NewPrinter(tag)
-	_, c, err := m.SplitAmountAndCents()
+	_, cents, err := m.SplitAmountAndCents()
 	if err != nil {
 		return formatted, err
 	}
-	o := p.Sprintf("%f", m.Float())
-	maxI := lastIndexOfCommaOrDot(o)
-	if c == 0 && maxI <= len(o) {
-		return o[0:maxI], nil
+	floatAmountAsString := p.Sprintf("%f", m.Float())
+	maxI := lastIndexOfCommaOrDot(floatAmountAsString)
+	if cents == 0 && maxI <= len(floatAmountAsString) {
+		return floatAmountAsString[0:maxI], nil
 	}
-	centsAsString := fmt.Sprintf("%d", c)
+	centsAsString := fmt.Sprintf("%d", cents)
 
-	return o[0 : maxI+1+len(centsAsString)], nil
+	return floatAmountAsString[0 : maxI+1+len(centsAsString)], nil
 }
 
 // Display Symbol

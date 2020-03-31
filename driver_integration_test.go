@@ -7,7 +7,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/google/uuid"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/radicalcompany/money"
 	"github.com/stretchr/testify/assert"
@@ -25,7 +24,7 @@ func TestMoneyDriver(t *testing.T) {
 	payedAlwaysInGBPButStoredAsFloat := money.MustForge(123, "GBP")
 
 	table := "tshirt_catalog_" + t.Name()
-	n := "radical-tshirt-" + uuid.New().String()
+	n := "radical-tshirt-name"
 	//new Customer
 	c := &tshirt{
 		n,

@@ -24,13 +24,13 @@ jobs:
 
     - name: Get dependencies
       run: |
-        go get -v -t -d ./... && make install-lint
+        make dep && make install-lint
 
     - name: Test
       run: make test
 
     - name: Lint
-      run: make lint || true
+      run: PATH=$PATH:/home/runner/go/bin && make lint || true
 
     - name: Build
       run: make build
