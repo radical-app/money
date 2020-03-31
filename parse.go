@@ -1,11 +1,10 @@
 package money
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
-
-	"github.com/pkg/errors"
 )
 
 func ParseWithFallback(s string, fallbackCurr Currency) (m Money, err error) {
@@ -26,7 +25,7 @@ func ParseWithFallback(s string, fallbackCurr Currency) (m Money, err error) {
 
 	ss := strings.Fields(s)
 	if len(ss) != 1 && len(ss) != 2 {
-		return m, errors.New(fmt.Sprintf("money field should be like `EUR 123` given %v", s))
+		return m, fmt.Errorf("money field should be like `EUR 123` given %v", s)
 	}
 
 	amountAsInt, err := strconv.ParseInt(ss[len(ss)-1], 10, 64)

@@ -1,9 +1,23 @@
-# .golangci.yml
+linters:
+  enable:
+    - godox
+    - dupl
+    - goimports
+    - misspell
+    - whitespace
+    - goprintffuncname
+    - unconvert
+    - goconst
+    - unparam
+    - gocritic
+
 linters-settings:
   govet:
     check-shadowing: true
   gofmt:
     fast: true
+  goimports:
+    local-prefixes: gitlab.com/bagbnb, github.com/radicalcompany/
 
 issues:
   exclude:

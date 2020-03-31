@@ -9,7 +9,7 @@ install-lint: ## install golint
 	@curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(ENVGO)/bin v1.23.6
 
 lint: ## Lint the files
-	GL_DEBUG=linters_output;GOPACKAGESPRINTGOLISTERRORS=1;golangci-lint run -E goimports -E misspell -E whitespace -E goprintffuncname -E godox
+	GL_DEBUG=linters_output;GOPACKAGESPRINTGOLISTERRORS=1;golangci-lint run -c .golangci.yml
 
 test: ## Run unittests
 	@go test -v
