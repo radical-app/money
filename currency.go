@@ -3,12 +3,14 @@ package money
 import (
 	"errors"
 	"math"
+	"strings"
 )
 
 var DefaultCurrencyCode = "EUR"
 
 // GetCurrencyByCode gets the currency object by currency ISO code
 func CurrencyByISOCode(code string) (currency Currency, err error) {
+	code = strings.ToUpper(code)
 	if c, ok := currencies[code]; ok {
 		return c, nil
 	}
