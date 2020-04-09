@@ -58,3 +58,27 @@ func TestByLocale(t *testing.T) {
 		return
 	}
 }
+
+func TestDefaultFormat(t *testing.T) {
+	tests := []struct {
+		name          string
+		args          money.Money
+		wantFormatted string
+		wantErr       bool
+	}{
+		{"no cents", money.MustForge(123400, "EUR"), "€ 1234", false},
+		{"with cents", money.MustForge(123456, "EUR"), "€ 1234.56", false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			gotFormatted, err := moneyfmt.DisplayDefault(tt.args)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Display() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if gotFormatted != tt.wantFormatted {
+				t.Errorf("Display() = %v, want %v", gotFormatted, tt.wantFormatted)
+			}
+		})
+	}
+}
