@@ -26,9 +26,33 @@ func DisplayAmount(m money.Money, locale string) (formatted string, err error) {
 	return floatAmountAsString[0 : maxI+1+len(centsAsString)], nil
 }
 
+func DisplayDefaultAmount(m money.Money) (formatted string, err error) {
+	_, cents, err := m.SplitAmountAndCents()
+	if err != nil {
+		return formatted, err
+	}
+	floatAmountAsString := fmt.Sprintf("%f", m.Float())
+	maxI := lastIndexOfCommaOrDot(floatAmountAsString)
+	if cents == 0 && maxI <= len(floatAmountAsString) {
+		return floatAmountAsString[0:maxI], nil
+	}
+	centsAsString := fmt.Sprintf("%d", cents)
+
+	return floatAmountAsString[0 : maxI+1+len(centsAsString)], nil
+}
+
 // Display Symbol
 func Display(m money.Money, locale string) (formatted string, err error) {
 	a, err := DisplayAmount(m, locale)
+	if err != nil {
+		return a, err
+	}
+	return fmt.Sprintf("%s %s", m.Currency.Symbol, a), err
+}
+
+// Display Symbol without localization
+func DisplayDefault(m money.Money) (formatted string, err error) {
+	a, err := DisplayDefaultAmount(m)
 	if err != nil {
 		return a, err
 	}
