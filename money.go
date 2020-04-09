@@ -128,12 +128,30 @@ func (m Money) Add(addendum Money) (s Money, err error) {
 	return ForgeWithCurrency(addendum.Amount.Int64()+m.Amount.Int64(), m.Currency), err
 }
 
+func (m Money) MustAdd(addendum Money) (s Money) {
+	s, err := m.Add(addendum)
+	if err != nil {
+		panic(err)
+	}
+
+	return s
+}
+
 func (m Money) Subtract(subtrahend Money) (s Money, err error) {
 	if !m.Currency.IsEquals(subtrahend.Currency) {
 		return s, errors.New(fmt.Sprint("Can't compare or use math with different currency", m.Currency, s.Currency))
 	}
 
 	return ForgeWithCurrency(m.Amount.Int64()-subtrahend.Amount.Int64(), m.Currency), err
+}
+
+func (m Money) MustSubtract(subtrahend Money) (s Money) {
+	s, err := m.Subtract(subtrahend)
+	if err != nil {
+		panic(err)
+	}
+
+	return s
 }
 
 func (m Money) SplitAmountAndCents() (i int64, cents int, err error) {
@@ -160,6 +178,15 @@ func (m Money) SplitAmountAndCents() (i int64, cents int, err error) {
 
 	cents, err = strconv.Atoi(decPartStr[2:])
 	return i, cents, err
+}
+
+func (m Money) MustSplitAmountAndCents() (i int64, cents int) {
+	amount, cents, err := m.SplitAmountAndCents()
+	if err != nil {
+		panic(err)
+	}
+
+	return amount, cents
 }
 
 func Scan(value interface{}, curr string) (m Money, err error) {

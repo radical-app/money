@@ -1,6 +1,7 @@
 package moneyfmt_test
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"golang.org/x/text/currency"
@@ -40,6 +41,36 @@ func TestDisplay(t *testing.T) {
 			if gotFormatted != tt.wantFormatted {
 				t.Errorf("Display() = %v, want %v", gotFormatted, tt.wantFormatted)
 			}
+		})
+	}
+}
+
+func TestMustDisplay(t *testing.T) {
+	tests := []struct {
+		name          string
+		args          money.Money
+		wantFormatted string
+	}{
+		{"ru", money.MustForge(123400, "EUR"), "€ 1 234"},
+		{"ru", money.MustForge(123456, "EUR"), "€ 1 234,56"},
+
+		{"it", money.MustForge(123456, "EUR"), "€ 1.234,56"},
+		{"it", money.MustForge(123400, "EUR"), "€ 1.234"},
+		{"en", money.MustForge(123456, "EUR"), "€ 1,234.56"},
+
+		{"it", money.MustForge(123400, "EUR"), "€ 1.234"},
+
+		{"jp", money.MustForge(123456, "EUR"), "€ 1,234.56"},
+		{"zh", money.MustForge(123456, "EUR"), "€ 1,234.56"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.NotPanics(t, func() {
+				gotFormatted := moneyfmt.MustDisplay(tt.args, tt.name)
+				if gotFormatted != tt.wantFormatted {
+					t.Errorf("Display() = %v, want %v", gotFormatted, tt.wantFormatted)
+				}
+			})
 		})
 	}
 }
