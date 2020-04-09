@@ -25,8 +25,7 @@ func (m Money) Int64() int64 {
 }
 
 // Forge
-// amount   int64   A positive integer in cents (or 0 for a free plan)
-//                  representing how much to charge on a recurring basis.
+// amount   int64   A positive integer in cents
 // currCode string Three-letter ISO currency code, in lowercase
 func Forge(amount int64, currCode string) (m Money, err error) {
 	c, err := CurrencyByISOCode(currCode)
@@ -38,8 +37,7 @@ func Forge(amount int64, currCode string) (m Money, err error) {
 }
 
 // Forge
-// amount   float64 A positive float64 in cents (or 0 for a free plan)
-//          representing how much to charge on a recurring basis.
+// amount   float64 A positive float64 in cents
 // currCode string  Three-letter ISO currency code, in lowercase
 func ForgeFloat(amount float64, currCode string) (m Money, err error) {
 	c, err := CurrencyByISOCode(currCode)
@@ -68,8 +66,7 @@ func ForgeFloatWithCurrency(amountFloat float64, c Currency) Money {
 }
 
 // MustForge Forge or panic
-// amount   int    A positive integer in cents (or 0 for a free plan)
-//                 representing how much to charge on a recurring basis.
+// amount   int    A positive integer in cents
 // currCode string Three-letter ISO currency code, in lowercase
 func MustForge(amount int64, currCode string) Money {
 	m, err := Forge(amount, currCode)
@@ -81,7 +78,7 @@ func MustForge(amount int64, currCode string) Money {
 }
 
 // ForgeWithCurrency
-// amount   int      A positive integer in cents (or 0 for a free plan) representing how much to charge on a recurring basis.
+// amount   int      A positive integer in cents
 // currency Currency The currency Value Object
 func ForgeWithCurrency(amount int64, c Currency) Money {
 	var err error
@@ -253,16 +250,6 @@ func (m Money) ExtractDTO() DTO {
 		m.Currency.Symbol,
 		m.Currency.GetCents(),
 	}
-}
-
-type ShortDTO string
-
-func (d ShortDTO) ExtractMoney(s string) (m Money, err error) {
-	return ParseWithFallback(s, Currency{})
-}
-
-func (m Money) ExtractShortDTO() ShortDTO {
-	return ShortDTO(m.String())
 }
 
 func AED(i int64) Money { return MustForge(i, "AED") }
