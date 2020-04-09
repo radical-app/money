@@ -18,6 +18,16 @@ func CurrencyByISOCode(code string) (currency Currency, err error) {
 	return currency, errors.New("Currency not found")
 }
 
+// GetCurrencyByCode gets the currency object by currency ISO code
+func MustGetCurrencyByISOCode(code string) (currency Currency) {
+	currency, err := CurrencyByISOCode(code)
+	if err != nil {
+		panic(err)
+	}
+
+	return currency
+}
+
 // Currency codes
 // https://www.iso.org/iso-4217-currency-codes.html
 type Currency struct {
