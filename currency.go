@@ -1,7 +1,7 @@
 package money
 
 import (
-	"errors"
+	"fmt"
 	"math"
 	"strings"
 )
@@ -15,7 +15,7 @@ func CurrencyByISOCode(code string) (currency Currency, err error) {
 		return c, nil
 	}
 
-	return currency, errors.New("Currency not found")
+	return currency, fmt.Errorf("currency not found: code %s", code)
 }
 
 // GetCurrencyByCode gets the currency object by currency ISO code
