@@ -16,7 +16,7 @@ func CurrencyByISOCode(code string) (currency Currency, err error) {
 	}
 
 	return currency, fmt.Errorf("currency not found: code %s", code)
-}cu
+}
 
 // GetCurrencyByCode gets the currency object by currency ISO code
 func MustGetCurrencyByISOCode(code string) (currency Currency) {
