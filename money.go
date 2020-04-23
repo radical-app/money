@@ -24,6 +24,18 @@ func (m Money) Int64() int64 {
 	return int64(m.Amount)
 }
 
+func (m Money) Float() float64 {
+	if m.IsZero() {
+		return 0
+	}
+	d := m.DigitsAsCents()
+	return float64(m.Amount) / float64(d)
+}
+
+func (m Money) AmountAsString() string {
+	return fmt.Sprintf("%.2f", m.Float())
+}
+
 // Forge
 // amount   int64   A positive integer in cents
 // currCode string Three-letter ISO currency code, in lowercase
@@ -94,14 +106,6 @@ func ForgeWithCurrency(amount int64, c Currency) Money {
 
 func (m Money) IsZero() bool {
 	return m.Amount == 0
-}
-
-func (m Money) Float() float64 {
-	if m.IsZero() {
-		return 0
-	}
-	d := m.DigitsAsCents()
-	return float64(m.Amount) / float64(d)
 }
 
 func (m Money) DigitsAsCents() int {
