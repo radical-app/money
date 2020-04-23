@@ -44,6 +44,13 @@ func TestFloat(t *testing.T) {
 	assert.Equal(t, OneEurAndOneCent.Float(), 1.01)
 }
 
+func TestAmountAsString(t *testing.T) {
+	OneEurAndOneCent := money.FloatEUR(1.01)
+
+	assert.Equal(t, OneEurAndOneCent.Int64(), int64(101))
+	assert.Equal(t, OneEurAndOneCent.AmountAsString(), "1.01")
+}
+
 func TestMoney_IsEquals(t *testing.T) {
 	OneEurAndOneCent := money.FloatEUR(1.01)
 

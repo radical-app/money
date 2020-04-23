@@ -44,17 +44,25 @@ func TestConvertTo(t *testing.T) {
 			wantRes: money.MustForge(110, "USD"),
 			wantErr: false,
 		},
+		{
+			name: "gbp_to_usd",
+			args: args{
+				obj:  money.MustForge(100, "GBP"),
+				rate: ForgeRate(money.MustGetCurrencyByISOCode("USD"), money.MustGetCurrencyByISOCode("EUR"), 2),
+			},
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			gotRes, err := ConvertTo(&tt.args.obj, tt.args.rate)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("ConvertTo() error = %v, wantErr %v", err, tt.wantErr)
-				return
+			if tt.wantErr {
+				assert.NotNil(t, err)
 			}
-			assert.NotNil(t, gotRes)
-			if !assert.True(t, gotRes.IsEquals(tt.wantRes)) {
-				t.Errorf("ConvertTo() gotRes = %v, want %v", gotRes, tt.wantRes)
+			if gotRes != nil {
+				if !assert.True(t, gotRes.IsEquals(tt.wantRes)) {
+					t.Errorf("ConvertTo() result = %v, want %v", gotRes, tt.wantRes)
+				}
 			}
 		})
 	}
