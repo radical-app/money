@@ -1,7 +1,7 @@
 package convert
 
 import (
-	"github.com/radicalcompany/money"
+	"github.com/radical-app/money"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

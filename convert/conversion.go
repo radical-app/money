@@ -2,7 +2,7 @@ package convert
 
 import (
 	"fmt"
-	"github.com/radicalcompany/money"
+	"github.com/radical-app/money"
 	"math"
 )
 

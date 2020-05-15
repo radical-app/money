@@ -1,4 +1,4 @@
-module github.com/radicalcompany/money
+module github.com/radical-app/money
 
 go 1.14
 
