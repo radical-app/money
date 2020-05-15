@@ -1,5 +1,5 @@
 PROJECT_NAME := "money"
-PKG := "github.com/radicalcompany/$(PROJECT_NAME)"
+PKG := "github.com/radical-app/$(PROJECT_NAME)"
 ENVGO := $(shell go env GOPATH)
 .PHONY: all swag dep dep-test dep-build build clean test coverage coverhtml lint install-lint
 

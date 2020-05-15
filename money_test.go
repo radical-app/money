@@ -5,7 +5,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/radicalcompany/money"
+	"github.com/radical-app/money"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -17,7 +17,7 @@ linters-settings:
   gofmt:
     fast: true
   goimports:
-    local-prefixes: gitlab.com/bagbnb, github.com/radicalcompany/
+    local-prefixes: gitlab.com/bagbnb, github.com/radical-app/
 
 issues:
   exclude:
