@@ -52,6 +52,24 @@ func TestConvertTo(t *testing.T) {
 			},
 			wantErr: true,
 		},
+		{
+			name: "vnd_to_eur",
+			args: args{
+				obj:  money.MustForge(100000, "VND"),
+				rate: ForgeRate(money.MustGetCurrencyByISOCode("EUR"), money.MustGetCurrencyByISOCode("VND"), 25258.410459),
+			},
+			wantRes: money.MustForge(396, "EUR"),
+			wantErr: false,
+		},
+		{
+			name: "eur_to_vnd",
+			args: args{
+				obj:  money.MustForge(100, "EUR"),
+				rate: ForgeRate(money.MustGetCurrencyByISOCode("EUR"), money.MustGetCurrencyByISOCode("VND"),  25258.410459),
+			},
+			wantRes: money.MustForge(25258, "VND"),
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -37,10 +37,11 @@ func ConvertTo(obj *money.Money, rate Rate) (res *money.Money, err error) {
 
 
 func convertFromSource(obj *money.Money, rate Rate) (res *money.Money, err error) {
-	amountFrom := float64(obj.Int64())
+	amountFrom := obj.Float()
 	toRate := rate.Rate
-	amount := int64(math.Round(amountFrom * toRate))
-	result, err := money.Forge(amount, rate.Target.Code)
+	centsCount := math.Pow(10, float64(rate.Target.MinorUnit))
+	resultAmountInCents := int64(math.Round(amountFrom * toRate * centsCount))
+	result, err := money.Forge(resultAmountInCents, rate.Target.Code)
 	if err != nil {
 		return nil, err
 	}
@@ -49,10 +50,11 @@ func convertFromSource(obj *money.Money, rate Rate) (res *money.Money, err error
 
 
 func convertToSource(obj *money.Money, rate Rate) (res *money.Money, err error) {
-	amountFrom := float64(obj.Int64())
+	amountFrom := obj.Float()
 	toRate := rate.Rate
-	amount := int64(math.Round(amountFrom / toRate))
-	result, err := money.Forge(amount, rate.Source.Code)
+	centsCount := math.Pow(10, float64(rate.Source.MinorUnit))
+	resultAmountInCents := int64(math.Round(amountFrom / toRate * centsCount))
+	result, err := money.Forge(resultAmountInCents, rate.Source.Code)
 	if err != nil {
 		return nil, err
 	}
