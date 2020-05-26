@@ -33,7 +33,7 @@ func (m Money) Float() float64 {
 }
 
 func (m Money) AmountAsString() string {
-	return fmt.Sprintf("%.2f", m.Float())
+	return fmt.Sprintf("%."+strconv.Itoa(m.Currency.MinorUnit)+"f", m.Float())
 }
 
 // Forge

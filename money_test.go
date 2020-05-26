@@ -37,6 +37,26 @@ func TestOutputASFloat(t *testing.T) {
 	assert.Equal(t, OneEur.Float(), float64(1))
 }
 
+func TestOutputASFloatZeroDecimals(t *testing.T) {
+	amount, err := money.Forge(1011, "VND")
+	assert.Nil(t, err)
+	assert.Equal(t, float64(1011), amount.Float())
+
+	OneVND, err := money.Forge(1000, "VND")
+	assert.Nil(t, err)
+	assert.Equal(t, float64(1000), OneVND.Float())
+}
+
+func TestOutputASFloatThreeDecimals(t *testing.T) {
+	amount, err := money.Forge(1011, "JOD")
+	assert.Nil(t, err)
+	assert.Equal(t, float64(1.011), amount.Float())
+
+	OneJOD, err := money.Forge(1000, "JOD")
+	assert.Nil(t, err)
+	assert.Equal(t, float64(1.000), OneJOD.Float())
+}
+
 func TestFloat(t *testing.T) {
 	OneEurAndOneCent := money.FloatEUR(1.01)
 
@@ -49,6 +69,26 @@ func TestAmountAsString(t *testing.T) {
 
 	assert.Equal(t, OneEurAndOneCent.Int64(), int64(101))
 	assert.Equal(t, OneEurAndOneCent.AmountAsString(), "1.01")
+}
+
+func TestOutputAsStringZeroDecimals(t *testing.T) {
+	amount, err := money.Forge(1011, "VND")
+	assert.Nil(t, err)
+	assert.Equal(t, "1011", amount.AmountAsString())
+
+	OneVND, err := money.Forge(1000, "VND")
+	assert.Nil(t, err)
+	assert.Equal(t, "1000", OneVND.AmountAsString())
+}
+
+func TestOutputAStringThreeDecimals(t *testing.T) {
+	amount, err := money.Forge(1011, "JOD")
+	assert.Nil(t, err)
+	assert.Equal(t, "1.011", amount.AmountAsString())
+
+	OneJOD, err := money.Forge(1000, "JOD")
+	assert.Nil(t, err)
+	assert.Equal(t, "1.000", OneJOD.AmountAsString())
 }
 
 func TestMoney_IsEquals(t *testing.T) {
