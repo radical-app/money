@@ -117,7 +117,11 @@ func (m Money) IsEquals(cmp Money) bool {
 }
 
 func (m Money) PercentOff(perc int) Money {
-	div := float64(perc) / 100
+	return m.PercentOffFloat(float64(perc))
+}
+
+func (m Money) PercentOffFloat(perc float64) Money {
+	div := perc / 100
 	return ForgeFloatWithCurrency(m.Float()*div, m.Currency)
 }
 

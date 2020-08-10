@@ -110,6 +110,17 @@ func TestMoney_PercentageOff(t *testing.T) {
 	assert.True(t, OneEurAndOneCent.IsEquals(money.EUR(10009)))
 }
 
+func TestMoney_PercentageOffFloat(t *testing.T) {
+	amount := money.FloatEUR(100.09)
+
+	pOff := amount.PercentOffFloat(20.5)
+
+	assert.Equal(t, pOff.Int64(), int64(2052))
+	assert.Equal(t, pOff.Float(), 20.52)
+
+	assert.True(t, amount.IsEquals(money.EUR(10009)))
+}
+
 func TestMoney_CentsValue(t *testing.T) {
 	type fields struct {
 		Amount      int64
