@@ -67,7 +67,7 @@ func (c Currency) IsEquals(cmp Currency) bool {
 }
 
 var currencies = map[string]Currency{
-	"AED": {Code: "AED", MinorUnit: 2, Symbol: ".\u062f.\u0625", ShowCodeNextToSymbol: true},
+	"AED": {Code: "AED", MinorUnit: 2, Symbol: "\u062f\u002e\u0625", ShowCodeNextToSymbol: true},
 	"AFN": {Code: "AFN", MinorUnit: 2, Symbol: "\u060b", ShowCodeNextToSymbol: false},
 	"ALL": {Code: "ALL", MinorUnit: 2, Symbol: "Lek", ShowCodeNextToSymbol: false},
 	"AMD": {Code: "AMD", MinorUnit: 2, Symbol: "\u0564\u0580.", ShowCodeNextToSymbol: false},
@@ -81,7 +81,7 @@ var currencies = map[string]Currency{
 	"BBD": {Code: "BBD", MinorUnit: 2, Symbol: "Bds$", ShowCodeNextToSymbol: false},
 	"BDT": {Code: "BDT", MinorUnit: 2, Symbol: "\u09f3", ShowCodeNextToSymbol: false},
 	"BGN": {Code: "BGN", MinorUnit: 2, Symbol: "\u043b\u0432", ShowCodeNextToSymbol: false},
-	"BHD": {Code: "BHD", MinorUnit: 3, Symbol: ".\u062f.\u0628", ShowCodeNextToSymbol: false},
+	"BHD": {Code: "BHD", MinorUnit: 3, Symbol: "\u002e\u062f\u002e\u0628", ShowCodeNextToSymbol: false},
 	"BIF": {Code: "BIF", MinorUnit: 0, Symbol: "FBu", ShowCodeNextToSymbol: false},
 	"BMD": {Code: "BMD", MinorUnit: 2, Symbol: "BD$", ShowCodeNextToSymbol: false},
 	"BND": {Code: "BND", MinorUnit: 2, Symbol: "", ShowCodeNextToSymbol: false},
@@ -137,7 +137,7 @@ var currencies = map[string]Currency{
 	"ISK": {Code: "ISK", MinorUnit: 0, Symbol: "kr", ShowCodeNextToSymbol: true},
 	"JEP": {Code: "JEP", MinorUnit: 2, Symbol: "\u00a3", ShowCodeNextToSymbol: true},
 	"JMD": {Code: "JMD", MinorUnit: 2, Symbol: "J$", ShowCodeNextToSymbol: false},
-	"JOD": {Code: "JOD", MinorUnit: 3, Symbol: ".\u062f.\u0625", ShowCodeNextToSymbol: true},
+	"JOD": {Code: "JOD", MinorUnit: 3, Symbol: "\u062f\u002e\u0625", ShowCodeNextToSymbol: true},
 	"JPY": {Code: "JPY", MinorUnit: 0, Symbol: "\u00a5", ShowCodeNextToSymbol: false},
 	"KES": {Code: "KES", MinorUnit: 2, Symbol: "KSh", ShowCodeNextToSymbol: false},
 	"KGS": {Code: "KGS", MinorUnit: 2, Symbol: "\u0441\u043e\u043c", ShowCodeNextToSymbol: false},
@@ -145,7 +145,7 @@ var currencies = map[string]Currency{
 	"KMF": {Code: "KMF", MinorUnit: 0, Symbol: "CF", ShowCodeNextToSymbol: false},
 	"KPW": {Code: "KPW", MinorUnit: 0, Symbol: "\u20a9", ShowCodeNextToSymbol: true},
 	"KRW": {Code: "KRW", MinorUnit: 0, Symbol: "\u20a9", ShowCodeNextToSymbol: true},
-	"KWD": {Code: "KWD", MinorUnit: 3, Symbol: ".\u062f.\u0643", ShowCodeNextToSymbol: false},
+	"KWD": {Code: "KWD", MinorUnit: 3, Symbol: "\u062f\u002e\u0643", ShowCodeNextToSymbol: false},
 	"KYD": {Code: "KYD", MinorUnit: 2, Symbol: "CI$", ShowCodeNextToSymbol: false},
 	"KZT": {Code: "KZT", MinorUnit: 2, Symbol: "\u20b8", ShowCodeNextToSymbol: false},
 	"LAK": {Code: "LAK", MinorUnit: 2, Symbol: "\u20ad", ShowCodeNextToSymbol: false},

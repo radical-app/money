@@ -75,6 +75,28 @@ func TestMustDisplay(t *testing.T) {
 	}
 }
 
+func TestMustDisplayRtl(t *testing.T) {
+	tests := []struct {
+		name          string
+		args          money.Money
+		wantFormatted string
+	}{
+		{"ru", money.MustForge(123456, "AED"), "د.إ 1 234,56"},
+		{"en", money.MustForge(123456, "AED"), "د.إ 1,234.56"},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			assert.NotPanics(t, func() {
+				gotFormatted := moneyfmt.MustDisplay(tt.args, tt.name)
+				if gotFormatted != tt.wantFormatted {
+					t.Errorf("Display() = %v, want %v", gotFormatted, tt.wantFormatted)
+				}
+			})
+		})
+	}
+}
+
+
 func TestByLocale(t *testing.T) {
 	v := currency.NarrowSymbol
 	tag := language.Make("it")
