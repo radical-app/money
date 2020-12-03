@@ -223,7 +223,7 @@ var currencies = map[string]Currency{
 	"WST": {Code: "WST", MinorUnit: 2, Symbol: "T", ShowCodeNextToSymbol: true},
 	"XAF": {Code: "XAF", MinorUnit: 0, Symbol: "Fr", ShowCodeNextToSymbol: true},
 	"XOF": {Code: "XOF", MinorUnit: 0, Symbol: "Fr", ShowCodeNextToSymbol: true},
-	"XPF": {Code: "XPF", MinorUnit: 0, Symbol: "Fr", ShowCodeNextToSymbol: true},
+	"XPF": {Code: "XPF", MinorUnit: 2, Symbol: "Fr", ShowCodeNextToSymbol: true},
 	"XCD": {Code: "XCD", MinorUnit: 2, Symbol: "EC$", ShowCodeNextToSymbol: false},
 	"YER": {Code: "YER", MinorUnit: 2, Symbol: "\ufdfc", ShowCodeNextToSymbol: true},
 	"ZAR": {Code: "ZAR", MinorUnit: 2, Symbol: "R", ShowCodeNextToSymbol: false},
