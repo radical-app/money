@@ -5,7 +5,7 @@ import (
 	"errors"
 )
 
-func (m *Money) MarshalJSON() ([]byte, error) {
+func (m Money) MarshalJSON() ([]byte, error) {
 	dto := m.ExtractDTO()
 
 	return json.Marshal(dto)
